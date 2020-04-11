@@ -6,9 +6,15 @@ namespace WastelessAPI.Application.Observer
 {
     public class PushNotificationObserver : IObserver
     {
+        public static GroceryItem currentItem { get; set; }
         public void Update(Int32 userId, GroceryItem item)
         {
-            //TODO: send notification to client
+            currentItem = item;
+        }
+
+        public GroceryItem GetItem()
+        {
+            return currentItem;
         }
     }
 }

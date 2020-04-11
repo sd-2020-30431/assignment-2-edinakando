@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using WastelessAPI.Application.HubConfig;
+using WastelessAPI.Application.Observer;
 
 namespace WastelessAPI
 {
@@ -29,6 +31,7 @@ namespace WastelessAPI
             services.AddTransient<UserLogic>();
             services.AddTransient<GroceriesLogic>();
             services.AddTransient<CharitiesLogic>();
+            services.AddTransient<PushNotificationObserver>();
 
             services.AddDbContext<WastelessDbContext>(options => options.UseMySql(_config.GetConnectionString("WASTELESS_DB")));
             
@@ -47,18 +50,25 @@ namespace WastelessAPI
                  };
              });
 
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddSignalR();
             services.AddCors();
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRouting();
+
             app.UseCors(options => options.WithOrigins(_config.GetSection("RequestOrigin").Value)
                                           .AllowAnyMethod()
                                           .AllowAnyHeader());
             app.UseAuthentication();
 
-            app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<NotificationsHub>("/notification");
+            });
         }
     }
 }
