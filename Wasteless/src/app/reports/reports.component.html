@@ -1,0 +1,22 @@
+    <button style="margin:5px;" class="btn btn-primary" (click)="weekly()">Weekly Waste Report</button>
+    <button style="margin:5px;"class="btn btn-primary" (click)="monthly()">Monthly Waste Report</button>
+    
+<div class="pt-2">
+    <table style="width:100%">
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Calories</th>
+            <th>Purchase Date</th>
+            <th>Expiration Date</th>
+        </tr>
+
+        <tr *ngFor="let item of reportItems">
+            <td>{{item.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.calories}}</td>
+            <td>{{item.purchaseDate | date : 'longDate'}}</td>
+            <td>{{item.expirationDate | date : 'longDate'}}</td>
+        </tr>
+    </table>
+</div>

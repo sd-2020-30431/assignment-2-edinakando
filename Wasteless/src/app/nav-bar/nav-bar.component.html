@@ -1,0 +1,30 @@
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+      <div class="container">
+        <a class="navbar-brand" [routerLink]="['/groceries']">Home</a>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+          <ul class="navbar-nav flex-grow"> 
+            <li *ngIf="!isLoggedIn"  class="nav-item" [routerLinkActive]="['link-active']" >
+              <a class="nav-link text-dark" [routerLink]="['/register']">Register</a>
+            </li>
+            <li *ngIf="!isLoggedIn" class="nav-item" [routerLinkActive]="['link-active']">
+              <a class="nav-link text-dark" [routerLink]="['/login']">Login</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav flex-grow"> 
+            <li *ngIf="isLoggedIn" class="nav-item" [routerLinkActive]="['link-active']"  >
+              <a class="nav-link text-dark" role="link" [routerLink]="['/addgroceries']">Add Groceries</a>
+            </li>
+            <li *ngIf="isLoggedIn" class="nav-item" [routerLinkActive]="['link-active']"  >
+              <a class="nav-link text-dark" role="link" [routerLink]="['/reports']">Reports</a>
+            </li>
+            <li *ngIf="isLoggedIn" class="nav-item"  >
+              <a class="nav-link text-dark" role="link" (click)="logout()">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+</header>
+  

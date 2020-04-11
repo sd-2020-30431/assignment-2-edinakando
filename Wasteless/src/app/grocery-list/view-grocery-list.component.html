@@ -1,0 +1,45 @@
+
+<div class="pt-5" *ngFor="let list of groceryLists; let i=index">
+    Grocery List {{i + 1}}
+    <table style="width:100%; margin-top: 0.5em">
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Calories</th>
+            <th>Purchase Date</th>
+            <th>Expiration Date</th>
+            <th>Consumption Date</th>
+        </tr>
+
+        <tr *ngFor="let item of list.items">
+            <td>{{item.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.calories}}</td>
+            <td>{{item.purchaseDate | date : 'longDate'}}</td>
+            <td>{{item.expirationDate | date : 'longDate'}}</td>
+            
+            <td>
+                <form method="post" [formGroup]="consumptionForm" (ngSubmit)="onSubmit()">
+                    <div formArrayName="dates">
+                        <div formGroupName={{i}}>
+                            <mat-form-field>
+                                <input formControlName='consumptionDate' matInput [matDatepicker]="consumption"
+                                    placeholder="Consumption Date">
+                                <mat-datepicker-toggle matSuffix [for]="consumption"></mat-datepicker-toggle>
+                                <mat-datepicker #consumption></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </form>
+            </td>
+
+            <td>
+                <a [routerLink]="['/donate', item.id]">Donate</a>
+            </td>
+        </tr>        
+    </table>
+</div>
+
+<div class="text-center" style="margin-top: 0.5em">
+    <button class="btn btn-primary" type="submit" (click)="onSubmit()">Save Changes</button>
+</div>

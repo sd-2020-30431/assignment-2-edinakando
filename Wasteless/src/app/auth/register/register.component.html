@@ -1,0 +1,40 @@
+<div class="row d-flex justify-content-center pt-5">
+    <div class="col-md-6">
+        <form method="post" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>Email</label>
+                <input class="form-control" formControlName="email"
+                    [ngClass]="{'is-invalid': email.invalid && email.touched}" />
+                <div class="invalid-feedback">
+                    <div *ngIf="email.errors?.required">Email required</div>
+                    <div *ngIf="email.errors?.email">Invalid email address</div>
+                </div>
+            </div>
+
+            <div [formGroup]="passwordsForm">
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" formControlName="password"
+                        [ngClass]="{'is-invalid': password.invalid && password.touched}" />
+                    <div class="invalid-feedback">
+                        <div *ngIf="password.errors?.required">Password required</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" class="form-control" formControlName="confirmPassword"
+                        [ngClass]="{'is-invalid': confirmPassword.invalid && confirmPassword.touched}" />
+                    <div class="invalid-feedback">
+                        <div *ngIf="confirmPassword.errors?.required">Password required</div>
+                        <div *ngIf="confirmPassword.errors?.passwordMismatch">Passwords don't match</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button [disabled]="registerForm.invalid" class="btn btn-primary" type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</div>

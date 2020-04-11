@@ -1,0 +1,5 @@
+
+<div class="pt-5" *ngFor="let charity of charities; let i=index">
+    Charity {{charity.name}}
+    <button class="btn btn-secondary" (click)="donate(charity.id)">Donate</button>
+</div>
