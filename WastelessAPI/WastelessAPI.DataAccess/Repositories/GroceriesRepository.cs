@@ -65,5 +65,12 @@ namespace WastelessAPI.DataAccess.Repositories
 
             return items;
         }
+
+        public void Edit(IList<GroceryItem> groceries)
+        {
+            foreach (var item in groceries)
+                _context.Update(item);
+            _context.SaveChanges();
+        }
     }
 }

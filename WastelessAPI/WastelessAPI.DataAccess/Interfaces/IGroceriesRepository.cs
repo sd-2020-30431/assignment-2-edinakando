@@ -11,5 +11,7 @@ namespace WastelessAPI.DataAccess.Interfaces
         public IList<Groceries> GetGroceries(Int32 userId);
         public void Consume(int itemId);
         void UpdateNotification(int itemId);
+        IList<GroceryItem> GetUserNotifications(int userId);
+        void Edit(IList<GroceryItem> groceries);
     }
 }

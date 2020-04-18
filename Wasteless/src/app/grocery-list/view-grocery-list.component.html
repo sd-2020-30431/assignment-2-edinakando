@@ -37,7 +37,17 @@
                 <a [routerLink]="['/donate', item.id]">Donate</a>
             </td>
         </tr>        
-    </table>
+
+        <tr>Notifications!</tr>
+        <tr *ngFor="let item of notifications">
+            <td>{{item.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.calories}}</td>
+            <td>{{item.purchaseDate | date : 'longDate'}}</td>
+            <td>{{item.expirationDate | date : 'longDate'}}</td>
+            <td>{{item.consumptionDate | date : 'longDate'}}</td>
+        </tr>
+    </table>        
 </div>
 
 <div class="text-center" style="margin-top: 0.5em">

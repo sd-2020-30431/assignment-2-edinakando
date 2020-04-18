@@ -16,7 +16,7 @@ namespace WastelessAPI.Controllers
             _groceriesLogic = groceriesLogic;
         }
 
-        [Route("/expiration")]
+        [Route("Expiration")]
         [HttpGet]
         public IActionResult GetExpirationNotification(Int32 userId)
         {

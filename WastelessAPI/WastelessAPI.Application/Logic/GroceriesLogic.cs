@@ -34,6 +34,19 @@ namespace WastelessAPI.Application.Logic
 
         }
 
+        public void Edit(IList<GroceryItem> groceries)
+        {
+            _groceriesRepository.Edit(groceries.Select(item => new DataAccess.Models.GroceryItem {
+                Id = item.Id,
+                Name = item.Name,
+                Quantity = item.Quantity,
+                Calories = item.Calories,
+                PurchaseDate = item.PurchaseDate,
+                ExpirationDate = item.ExpirationDate,
+                ConsumptionDate = item.ConsumptionDate
+            }).ToList());
+        }
+
         public IList<GroceryItem> GetExpirationNotification(int userId)
         {
             return _groceriesRepository.GetUserNotifications(userId)?.Select(item => new GroceryItem

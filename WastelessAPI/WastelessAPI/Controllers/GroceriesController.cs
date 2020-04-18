@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using WastelessAPI.Application.Logic;
 using WastelessAPI.Application.Models.Groceries;
 
@@ -28,6 +29,14 @@ namespace WastelessAPI.Controllers
         public IActionResult Index(Int32 userId)
         {
             return new JsonResult(_groceriesLogic.GetGroceries(userId));
+        }
+
+        [HttpPost]
+        [Route("Edit")]
+        public IActionResult Edit([FromBody]IList<GroceryItem> groceries)
+        {
+            _groceriesLogic.Edit(groceries);
+            return Ok();
         }
     }
 }
