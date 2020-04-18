@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WastelessAPI.DataAccess.Interfaces;
 using WastelessAPI.DataAccess.Models;
 
 namespace WastelessAPI.DataAccess.Repositories
 {
-    public class GroceriesRepository
+    public class GroceriesRepository : IGroceriesRepository
     {
         private readonly WastelessDbContext _context;
 

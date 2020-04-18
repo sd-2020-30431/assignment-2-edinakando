@@ -1,16 +1,16 @@
-﻿using WastelessAPI.Application.Models.Groceries;
-using WastelessAPI.DataAccess.Repositories;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System;
-using System.Collections.Generic;
+using WastelessAPI.Application.Models.Groceries;
+using WastelessAPI.DataAccess.Interfaces;
+using WastelessAPI.DataAccess.Repositories;
 
 namespace WastelessAPI.Application.Logic
 {
     public class GroceriesLogic
     {
-        private readonly GroceriesRepository _groceriesRepository;
+        private readonly IGroceriesRepository _groceriesRepository;
 
-        public GroceriesLogic(GroceriesRepository groceriesRepository)
+        public GroceriesLogic(IGroceriesRepository groceriesRepository)
         {
             _groceriesRepository = groceriesRepository;
         }

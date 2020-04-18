@@ -9,7 +9,7 @@ namespace WastelessAPI.Application.Observer
         public static GroceryItem currentItem { get; set; }
         public void Update(Int32 userId, GroceryItem item)
         {
-            currentItem = item;
+            //todo
         }
 
         public GroceryItem GetItem()
