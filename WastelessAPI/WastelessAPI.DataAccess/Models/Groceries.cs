@@ -7,7 +7,6 @@ namespace WastelessAPI.DataAccess.Models
     [Table("grocery_lists")]
     public class Groceries
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int32 Id { get; set; }
         public String Name { get; set; }
 

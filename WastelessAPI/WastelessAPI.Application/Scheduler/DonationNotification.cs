@@ -1,6 +1,7 @@
 ﻿using Coravel.Invocable;
 using System.Threading.Tasks;
 using WastelessAPI.Application.Observer;
+using WastelessAPI.DataAccess.Interfaces;
 using WastelessAPI.DataAccess.Repositories;
 
 namespace WastelessAPI.Application.Scheduler
@@ -8,9 +9,9 @@ namespace WastelessAPI.Application.Scheduler
     public class DonationNotification : IInvocable
     {
         private UserRepository _userRepository;
-        private GroceriesRepository _groceriesRepository;
+        private IGroceriesRepository _groceriesRepository;
 
-        public DonationNotification(UserRepository userRepository, GroceriesRepository groceriesRepository)
+        public DonationNotification(UserRepository userRepository, IGroceriesRepository groceriesRepository)
         {
             _userRepository = userRepository;
             _groceriesRepository = groceriesRepository;

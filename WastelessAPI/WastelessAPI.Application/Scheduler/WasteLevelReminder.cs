@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using WastelessAPI.DataAccess.Interfaces;
 using WastelessAPI.DataAccess.Models;
 using WastelessAPI.DataAccess.Repositories;
 
@@ -10,9 +11,9 @@ namespace WastelessAPI.Application.Scheduler
     public class WasteLevelReminder : IInvocable
     {
         private UserRepository _userRepository;
-        private GroceriesRepository _groceriesRepository;
+        private IGroceriesRepository _groceriesRepository;
 
-        public WasteLevelReminder(UserRepository userRepository, GroceriesRepository groceriesRepository)
+        public WasteLevelReminder(UserRepository userRepository, IGroceriesRepository groceriesRepository)
         {
             _userRepository = userRepository;
             _groceriesRepository = groceriesRepository;

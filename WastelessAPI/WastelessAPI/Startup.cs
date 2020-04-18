@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WastelessAPI.Application.HubConfig;
 using WastelessAPI.Application.Observer;
+using WastelessAPI.DataAccess.Interfaces;
 
 namespace WastelessAPI
 {
@@ -26,7 +27,7 @@ namespace WastelessAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<UserRepository>();
-            services.AddTransient<GroceriesRepository>();
+            services.AddTransient<IGroceriesRepository, GroceriesRepository>();
             services.AddTransient<CharitiesRepository>();
             services.AddTransient<UserLogic>();
             services.AddTransient<GroceriesLogic>();

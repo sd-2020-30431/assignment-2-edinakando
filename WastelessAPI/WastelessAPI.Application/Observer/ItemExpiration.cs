@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using WastelessAPI.DataAccess.Interfaces;
 using WastelessAPI.DataAccess.Models;
 using WastelessAPI.DataAccess.Repositories;
 
@@ -8,9 +9,9 @@ namespace WastelessAPI.Application.Observer
     public class ItemExpiration : Subject
     {
         private UserRepository _userRepository;
-        private GroceriesRepository _groceriesRepository;
+        private IGroceriesRepository _groceriesRepository;
 
-        public ItemExpiration(UserRepository userRepository, GroceriesRepository groceriesRepository)
+        public ItemExpiration(UserRepository userRepository, IGroceriesRepository groceriesRepository)
         {
             _userRepository = userRepository;
             _groceriesRepository = groceriesRepository;
