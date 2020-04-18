@@ -19,7 +19,7 @@ namespace WastelessAPI.Application.Scheduler
 
         public Task Invoke()
         {
-            var pushNotification = new PushNotificationObserver();
+            var pushNotification = new PushNotificationObserver(_groceriesRepository);
             var itemExpiration = new ItemExpiration(_userRepository, _groceriesRepository);
 
             itemExpiration.Register(pushNotification);

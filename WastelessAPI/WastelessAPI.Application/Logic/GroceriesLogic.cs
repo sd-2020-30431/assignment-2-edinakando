@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using WastelessAPI.Application.Models.Groceries;
 using WastelessAPI.DataAccess.Interfaces;
-using WastelessAPI.DataAccess.Repositories;
 
 namespace WastelessAPI.Application.Logic
 {
@@ -32,6 +32,19 @@ namespace WastelessAPI.Application.Logic
                     }).ToList()
             }); ;
 
+        }
+
+        public IList<GroceryItem> GetExpirationNotification(int userId)
+        {
+            return _groceriesRepository.GetUserNotifications(userId)?.Select(item => new GroceryItem
+            {
+                Name = item.Name,
+                Quantity = item.Quantity,
+                Calories = item.Calories,
+                PurchaseDate = item.PurchaseDate,
+                ExpirationDate = item.ExpirationDate,
+                ConsumptionDate = item.ConsumptionDate
+            }).ToList();
         }
 
         public IList<Groceries> GetGroceries(int userId)

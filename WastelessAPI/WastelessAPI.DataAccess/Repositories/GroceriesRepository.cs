@@ -46,5 +46,24 @@ namespace WastelessAPI.DataAccess.Repositories
             _context.Update(item);
             _context.SaveChanges();
         }
+
+        public void UpdateNotification(int itemId)
+        {
+            var item = _context.GroceryItems.Where(item => item.Id == itemId).First();
+            item.NotifyExpiration = true;
+            _context.Update(item);
+            _context.SaveChanges();
+        }
+
+        public IList<GroceryItem> GetUserNotifications(int userId)
+        {
+            var groceries = GetGroceries(userId);
+            var items = new List<GroceryItem>();
+
+            foreach (var grocery in groceries)
+                items.AddRange(grocery.Items.Where(i => i.NotifyExpiration == true));
+
+            return items;
+        }
     }
 }

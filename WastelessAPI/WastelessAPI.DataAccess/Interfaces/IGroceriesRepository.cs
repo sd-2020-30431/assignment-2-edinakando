@@ -10,5 +10,6 @@ namespace WastelessAPI.DataAccess.Interfaces
         public IList<GroceryItem> GetUserItemsExpiringInNearFuture(Int32 userId);
         public IList<Groceries> GetGroceries(Int32 userId);
         public void Consume(int itemId);
+        void UpdateNotification(int itemId);
     }
 }

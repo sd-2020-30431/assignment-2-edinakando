@@ -1,20 +1,22 @@
 ﻿
 using System;
 using WastelessAPI.Application.Models.Groceries;
+using WastelessAPI.DataAccess.Interfaces;
 
 namespace WastelessAPI.Application.Observer
 {
     public class PushNotificationObserver : IObserver
     {
-        public static GroceryItem currentItem { get; set; }
-        public void Update(Int32 userId, GroceryItem item)
+        private IGroceriesRepository _groceriesrepository { get; set; }
+
+        public PushNotificationObserver(IGroceriesRepository groceriesRepository)
         {
-            //todo
+            _groceriesrepository = groceriesRepository;
         }
 
-        public GroceryItem GetItem()
+        public void Update(Int32 userId, GroceryItem item)
         {
-            return currentItem;
+            _groceriesrepository.UpdateNotification(item.Id);
         }
     }
 }

@@ -23,5 +23,8 @@ namespace WastelessAPI.DataAccess.Models
         [Column("list_id")]
         public Int32 ListId { get; set; }
         public Groceries GroceryList { get; set; }
+
+        [Column("notify_expiration")]
+        public Boolean NotifyExpiration { get; set; }
     }
 }

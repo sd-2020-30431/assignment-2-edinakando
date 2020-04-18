@@ -1,17 +1,16 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WastelessAPI.DataAccess.Repositories;
-using WastelessAPI.Application.Logic;
-using WastelessAPI.DataAccess;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using WastelessAPI.Application.HubConfig;
+using WastelessAPI.Application.Logic;
 using WastelessAPI.Application.Observer;
+using WastelessAPI.DataAccess;
 using WastelessAPI.DataAccess.Interfaces;
+using WastelessAPI.DataAccess.Repositories;
 
 namespace WastelessAPI
 {
@@ -51,7 +50,6 @@ namespace WastelessAPI
                  };
              });
 
-            services.AddSignalR();
             services.AddCors();
             services.AddControllers();
         }
@@ -68,7 +66,6 @@ namespace WastelessAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<NotificationsHub>("/notification");
             });
         }
     }
